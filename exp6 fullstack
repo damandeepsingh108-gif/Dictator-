@@ -1,0 +1,15 @@
+function requireRole(...allowedRoles) { 
+return (req, res, next) => { 
+if (!req.user || !allowedRoles.includes(req.user.role)) { 
+return res.status(403).json({ message: 'Forbidden: insufficient role' }); 
+} 
+next(); 
+}; 
+} 
+export default function ProtectedRoute({ roles }) { 
+const isAuthenticated = useSelector(selectIsAuthenticated); 
+} 
+const hasRole = useSelector((state) => (roles ? selectHasRole(state, roles) : true)); 
+if (!isAuthenticated) return <Navigate to='/login' replace />; 
+if (roles && !hasRole) return <Navigate to='/unauthorized' replace />; 
+return <Outlet />; 
