@@ -1,0 +1,14 @@
+export const selectAllDrafts = createSelector( 
+[selectDraftsState], 
+(drafts) => drafts.allIds.map((id) => drafts.byId[id]) 
+); 
+export const selectPostCountByPlatform = createSelector( 
+); 
+[selectAllPosts, selectAllPlatforms], 
+(posts, platforms) => { 
+const counts = Object.fromEntries(platforms.map((p) => [p.id, 0])); 
+for (const post of posts) { 
+for (const pid of post.platformIds) counts[pid] = (counts[pid] || 0) + 1; 
+} 
+return counts; 
+}
