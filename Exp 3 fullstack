@@ -1,0 +1,14 @@
+const initialState = { 
+posts:  { byId: {}, allIds: [] }, 
+drafts: { byId: {}, allIds: [] }, 
+platforms: { 
+byId: { 
+twitter: { id: 'twitter', name: 'Twitter/X', charLimit: 280, maxMedia: 4 }, 
+// ...instagram, linkedin, facebook 
+}, 
+allIds: ['twitter', 'instagram', 'linkedin', 'facebook'], 
+}, 
+}; 
+export const store = configureStore({ 
+reducer: { posts: postsReducer }, 
+});
